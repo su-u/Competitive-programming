@@ -12,10 +12,18 @@ namespace ABC125A
         static void Main(string[] args)
         {
 
+
             Double[] x = Console.ReadLine().Split().Select(s => Double.Parse(s)).ToArray();
 
-            Console.WriteLine(Math.Abs(((x[0] - x[4]) * (x[3] - x[5]) - (x[2] - x[4]) * (x[1] - x[5])) * 0.5));
+            Double a = 0;
+            
+            for(Double i = x[0]; i < x[2] + 0.5; i += x[0])
+            {
+                a += x[1];
+            }
 
+   
+            Console.WriteLine((double)a);
 
 
         }

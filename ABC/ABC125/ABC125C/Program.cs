@@ -12,9 +12,9 @@ namespace ABC125C
         static void Main(string[] args)
         {
 
-            Double[] x = Console.ReadLine().Split().Select(s => Double.Parse(s)).ToArray();
+            Int32[] x = Console.ReadLine().Split().Select(s => Int32.Parse(s)).ToArray();
 
-            Console.WriteLine(Math.Abs(((x[0] - x[4]) * (x[3] - x[5]) - (x[2] - x[4]) * (x[1] - x[5])) * 0.5));
+            Console.WriteLine(x[1] / x[0]);
 
 
 
