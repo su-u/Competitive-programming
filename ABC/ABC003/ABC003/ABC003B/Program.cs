@@ -6,32 +6,69 @@ using System.Threading.Tasks;
 
 namespace ABC003B
 {
-    class Program
+    static class Program
     {
-
         static void Main(string[] args)
         {
-            var change = new Char[]{ 'a', 't', 'c', 'o', 'd', 'e', 'r'};
+            var change = new Char[]{ 'a', 't', 'c', 'o', 'd', 'e', 'r', '@'};
             String s = Console.ReadLine();
             String t = Console.ReadLine();
 
-            Boolean jg = false;
+            Boolean jg = true;
+            String at = "";
 
-            foreach(Char i in s)
+            for(Int32 i = 0;i < s.Length; ++i)
             {
-                foreach(Char j in t)
+                if(s[i] != t[i])
                 {
-                    if (i != j) jg = false;
-                    if(i == '@')
+                    if(s[i] == '@')
                     {
-                        if(change.Any(n => n == j))
+                        if(change.Any(n => n == t[i]))
                         {
-                           
+                            //s[i] = t[i];
+                            s = ChangeCharAt(s, i, t[i]);
+                            //Console.WriteLine(s);
                         }
+                        else
+                        {
+                            jg = false;
+                        }
+                    }else if(t[i] == '@')
+                    {
+                        if (change.Any(n => n == s[i]))
+                        {
+                            //s[i] = t[i];
+                            t = ChangeCharAt(t, i, s[i]);
+                            //Console.WriteLine(t);
+                        }
+                        else
+                        {
+                            jg = false;
+                        }
+                    }
+                    else
+                    {
+                        jg = false;
                     }
                 }
             }
 
+            if (jg)
+            {
+                Console.WriteLine("You can win");
+            }
+            else
+            {
+                Console.WriteLine("You will lose");
+            }
+
+            
+
         }
+        static string ChangeCharAt(this string str, int index, char newChar)
+        {
+            return str.Remove(index, 1).Insert(index, newChar.ToString());
+        }
+
     }
 }
