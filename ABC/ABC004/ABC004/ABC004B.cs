@@ -7,8 +7,28 @@ namespace ABC004.B
 {
     static class Class2
     {
-        public static void ABC004B()
+        public static void Main()
         {
+            var l = new List<List<String>>();
+            l.Add(Console.ReadLine().SplitTryParseToList<String>());
+            l.Add(Console.ReadLine().SplitTryParseToList<String>());
+            l.Add(Console.ReadLine().SplitTryParseToList<String>());
+            l.Add(Console.ReadLine().SplitTryParseToList<String>());
+
+            foreach(var i in Enumerable.Range(0, 4))
+            {
+                l[i].Reverse();
+            }
+            l.Reverse();
+
+            foreach (var i in Enumerable.Range(0, 4))
+            {
+                foreach(var j in Enumerable.Range(0,l[i].Count))
+                {
+                    Console.Write($"{l[i][j]} ");
+                }
+                Console.WriteLine();
+            }
 
         }
         
