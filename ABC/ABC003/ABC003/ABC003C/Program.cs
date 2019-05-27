@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-using CPL.Input;
 using System.Collections.Generic;
 using System.ComponentModel;
 namespace ABC003C
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
@@ -40,18 +39,6 @@ namespace ABC003C
 
             Console.WriteLine(rate.ToString("F8"));
         }
-    }
-
-
-
-    static class Input
-    {
-        /// <summary>
-        /// 文字列を任意の型にキャストする。
-        /// </summary>
-        /// <typeparam name="T">変換後の型</typeparam>
-        /// <param name="input">変換する文字列</param>
-        /// <returns>キャストされた値</returns>
         public static T TryParse<T>(this string input)
         {
             try
@@ -72,18 +59,11 @@ namespace ABC003C
             }
         }
 
-        /// <summary>
-        /// 文字列を空白で区切り、任意の型にキャストしたリストに変換する。
-        /// </summary>
-        /// <typeparam name="T">変換後の型</typeparam>
-        /// <param name="input">変換する文字列</param>
-        /// <returns>キャストされた値のリスト</returns>
         public static List<T> SplitTryParseToList<T>(this string input)
         {
             return input.Split().Select(n => n.TryParse<T>()).ToList();
         }
-
-
     }
+
 
 }
