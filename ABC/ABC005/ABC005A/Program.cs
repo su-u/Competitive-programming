@@ -10,7 +10,8 @@ namespace ABC005A
     {
         static void Main(string[] args)
         {
-            Console.ReadLine().SplitTryParseToList<int>();
+            var x = Console.ReadLine().SplitTryParseToList<int>();
+            Console.WriteLine(x[1] / x[0]);
         }
 
         public static T TryParse<T>(this string input)
