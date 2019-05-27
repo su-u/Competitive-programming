@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace ABC004
+namespace ABC004.A
 {
     public static class Class1
     {
@@ -32,12 +32,6 @@ namespace ABC004
             }
         }
 
-        /// <summary>
-        /// 文字列を空白で区切り、任意の型にキャストしたリストに変換する。
-        /// </summary>
-        /// <typeparam name="T">変換後の型</typeparam>
-        /// <param name="input">変換する文字列</param>
-        /// <returns>キャストされた値のリスト</returns>
         public static List<T> SplitTryParseToList<T>(this string input)
         {
             return input.Split().Select(n => n.TryParse<T>()).ToList();

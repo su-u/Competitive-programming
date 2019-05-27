@@ -6,7 +6,8 @@ namespace ABC004
     {
         public static void Main(string[] args)
         {
-            Class1.ABC004A();
+            A.Class1.ABC004A();
+            //Class2.ABC004B();
         }
     }
 }
