@@ -58,7 +58,7 @@ namespace ABC008B
             return list;
         }
 
-        public static List<Tuple<T, int>> DuplicateCount<T>(this List<T> list)
+        public static List<Tuple<T, int>> DuplicateCount<T>(this IEnumerable<T> list)
         {
             return list
                 .GroupBy(i => i)
@@ -66,7 +66,7 @@ namespace ABC008B
                 .Select(g => Tuple.Create(g.Key, g.Count()))
                 .ToList();
         }
-        public static List<Tuple<T, int>> DuplicateSort<T>(this List<Tuple<T, int>> list)
+        public static List<Tuple<T, int>> DuplicateSort<T>(this IEnumerable<Tuple<T, int>> list)
         {
             var dlist = list.OrderByDescending((x) => x.Item2);
             return dlist.ToList();
