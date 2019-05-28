@@ -12,8 +12,6 @@ namespace ABC007A
         static void Main(string[] args)
         {
             WriteLine(ReadLine().TryParse<int>() - 1);
-
-
         }
 
         /// <summary>
