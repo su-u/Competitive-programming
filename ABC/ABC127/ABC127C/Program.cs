@@ -11,6 +11,26 @@ namespace ABC127C
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().SplitTryParseToList<int>();
+            var a = new List<int>();
+
+            var m = ReadLine().SplitTryParseToList<int>();
+            var b = Enumerable.Range(m[0], m[1] - m[0] + 1);
+            a.AddRange(b);
+            foreach (var i in Enumerable.Range(1, n[1] - 1))
+            {
+                m = ReadLine().SplitTryParseToList<int>();
+                b = Enumerable.Range(m[0], m[1] - m[0] + 1);
+                a.AddRange(b);
+                //a.PrintAll();
+                a = a.GroupBy(name => name).Where(name => name.Count() > 1)
+                    .Select(group => group.Key).ToList();
+            }
+            //a.PrintAll();
+            //var duplicates = a.GroupBy(name => name).Where(name => name.Count() >= n[1])
+            //    .Select(group => group.Key).ToList();
+            //duplicates.PrintAll();
+            WriteLine(a.Count);
 
         }
 
