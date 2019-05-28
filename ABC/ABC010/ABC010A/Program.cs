@@ -11,7 +11,7 @@ namespace ABC010A
     {
         static void Main(string[] args)
         {
-
+            WriteLine($"{ReadLine()}pp");
         }
 
         public static T TryParse<T>(this String input)
