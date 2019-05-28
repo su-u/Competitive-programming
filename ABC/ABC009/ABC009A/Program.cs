@@ -32,7 +32,7 @@ namespace ABC009A
             }
             catch
             {
-                throw new InvalidCastException(typeof(T) + " is not suported.");
+                throw new InvalidCastException(typeof(T) + " is not supported.");
             }
         }
 
