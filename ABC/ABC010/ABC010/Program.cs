@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using static System.Console;
 
@@ -11,7 +12,12 @@ namespace ABC010
     {
         static void Main(string[] args)
         {
-
+            List<int> list = new List<int>() {1, 2, 3, 3};
+            var n = list.DuplicateCount();
+            foreach (var tuple in n)
+            {
+                WriteLine($"{tuple.Item1}:{tuple.Item2}");
+            }
         }
 
         public static T TryParse<T>(this String input)
@@ -57,8 +63,7 @@ namespace ABC010
         }
         public static List<Tuple<T, int>> DuplicateSort<T>(this IEnumerable<Tuple<T, int>> list)
         {
-            var dlist = list.OrderByDescending((x) => x.Item2);
-            return dlist.ToList();
+            return list.OrderByDescending((x) => x.Item2).ToList();
         }
         public static List<T> ReadLineOne<T>(int n)
         {
