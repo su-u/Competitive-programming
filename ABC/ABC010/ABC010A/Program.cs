@@ -51,14 +51,13 @@ namespace ABC010A
         {
             return list
                 .GroupBy(i => i)
-                .Where(g => g.Count() >= 1)
+                .Where(g => g.Any())
                 .Select(g => Tuple.Create(g.Key, g.Count()))
                 .ToList();
         }
         public static List<Tuple<T, int>> DuplicateSort<T>(this IEnumerable<Tuple<T, int>> list)
         {
-            var dlist = list.OrderByDescending((x) => x.Item2);
-            return dlist.ToList();
+            return list.OrderByDescending((x) => x.Item2).ToList();
         }
         public static List<T> ReadLineOne<T>(int n)
         {
