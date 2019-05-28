@@ -18,22 +18,12 @@ namespace ABC008B
             }
 
             List<string> alist = new List<string>() { "b", "1", "b"};
-            var duplicationList = list
-                .GroupBy(i => i)
-                .Where(g => g.Count() >= 1)
-                .Select(g => new { name = g.Key, duplicationCount = g.Count()})
                 .ToList();
+            var duplicationList = list.DuplicateCount();
 
-            var hogehoge = duplicationList.OrderByDescending((x) => x.duplicationCount);
+            var hogehoge = duplicationList.OrderByDescending((x) => x.Item2);            
 
-            string a = "";
-            foreach (var i in hogehoge)
-            {
-                a = i.name;
-                break;
-            }
-
-            WriteLine(a);
+            WriteLine(hogehoge.First().Item1);
 
         }
 
@@ -68,6 +58,15 @@ namespace ABC008B
             list[index1] = list[index2];
             list[index2] = t;
             return list;
+        }
+
+        public static List<Tuple<T, int>> DuplicateCount<T>(this List<T> list)
+        {
+            return list
+                .GroupBy(i => i)
+                .Where(g => g.Count() >= 1)
+                .Select(g => Tuple.Create(g.Key, g.Count()))
+                .ToList();
         }
     }
 }
