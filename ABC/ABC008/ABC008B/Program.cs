@@ -18,12 +18,10 @@ namespace ABC008B
             }
 
             List<string> alist = new List<string>() { "b", "1", "b"};
-                .ToList();
-            var duplicationList = list.DuplicateCount();
+            var duplicationList = list.DuplicateCount().DuplicateSort();
 
-            var hogehoge = duplicationList.OrderByDescending((x) => x.Item2);            
 
-            WriteLine(hogehoge.First().Item1);
+            WriteLine(duplicationList[0].Item1);
 
         }
 
@@ -67,6 +65,11 @@ namespace ABC008B
                 .Where(g => g.Count() >= 1)
                 .Select(g => Tuple.Create(g.Key, g.Count()))
                 .ToList();
+        }
+        public static List<Tuple<T, int>> DuplicateSort<T>(this List<Tuple<T, int>> list)
+        {
+            var dlist = list.OrderByDescending((x) => x.Item2);
+            return dlist.ToList();
         }
     }
 }
