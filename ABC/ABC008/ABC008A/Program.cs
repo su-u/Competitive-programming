@@ -11,7 +11,8 @@ namespace ABC008A
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().SplitTryParseToList<int>();
+            WriteLine(n[1] - n[0] + 1);
         }
 
         public static T TryParse<T>(this String input)
