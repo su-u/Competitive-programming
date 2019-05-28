@@ -11,7 +11,17 @@ namespace AB127A
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().SplitTryParseToList<int>();
+            int a = n[1];
+            if (n[0] <= 5)
+            {
+                a = 0;
+            }
+            else if (n[0] <= 12)
+            {
+                a = n[1] / 2;
+            }
+            WriteLine(a);
         }
 
         public static T TryParse<T>(this String input)
