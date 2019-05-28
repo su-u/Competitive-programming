@@ -11,7 +11,9 @@ namespace ABC009A
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
 
+            WriteLine(Convert.ToInt32(Math.Ceiling((double)n / 2)));
         }
 
         public static T TryParse<T>(this String input)
@@ -51,14 +53,30 @@ namespace ABC009A
         {
             return list
                 .GroupBy(i => i)
-                .Where(g => g.Count() >= 1)
+                .Where(g => g.Any())
                 .Select(g => Tuple.Create(g.Key, g.Count()))
                 .ToList();
         }
         public static List<Tuple<T, int>> DuplicateSort<T>(this IEnumerable<Tuple<T, int>> list)
         {
-            var dlist = list.OrderByDescending((x) => x.Item2);
-            return dlist.ToList();
+            return list.OrderByDescending((x) => x.Item2).ToList();
         }
+        public static List<T> ReadLineOne<T>(int n)
+        {
+            var list = new List<T>();
+            foreach (var i in Enumerable.Range(1, n))
+            {
+                list.Add(Console.ReadLine().TryParse<T>());
+            }
+            return list;
+        }
+        public static void PrintAll<T>(this IEnumerable<T> list)
+        {
+            foreach (var i in list)
+            {
+                Console.Write($"{i} ");
+            }
+        }
+
     }
 }
