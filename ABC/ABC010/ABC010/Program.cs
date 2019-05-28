@@ -20,7 +20,7 @@ namespace ABC010
             }
         }
 
-        public static T TryParse<T>(this String input)
+        public static T TryParse<T>(this string input)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace ABC010
             }
         }
 
-        public static List<T> SplitTryParseToList<T>(this String input)
+        public static List<T> SplitTryParseToList<T>(this string input)
         {
             return input.Split().Select(n => n.TryParse<T>()).ToList();
         }
