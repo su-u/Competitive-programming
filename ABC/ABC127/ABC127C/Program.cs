@@ -12,25 +12,41 @@ namespace ABC127C
         static void Main(string[] args)
         {
             var n = ReadLine().SplitTryParseToList<int>();
-            var a = new List<int>();
+            var a = 0;
+            var left = new List<int>();
+            var right = new List<int>();
 
             var m = ReadLine().SplitTryParseToList<int>();
-            var b = Enumerable.Range(m[0], m[1] - m[0] + 1);
-            a.AddRange(b);
-            foreach (var i in Enumerable.Range(1, n[1] - 1))
+            left.Add(m[0]);
+            right.Add(m[1]);
+            if (n[1] == 1)
             {
-                m = ReadLine().SplitTryParseToList<int>();
-                b = Enumerable.Range(m[0], m[1] - m[0] + 1);
-                a.AddRange(b);
-                //a.PrintAll();
-                a = a.GroupBy(name => name).Where(name => name.Count() > 1)
-                    .Select(group => group.Key).ToList();
+                a = right[0] - left[0];
             }
+            else
+            {
+                foreach (var i in Enumerable.Range(1, n[1] - 1))
+                {
+                    var o = ReadLine().SplitTryParseToList<int>();
+
+                    left.Add(o[0]);
+                    right.Add(o[1]);
+                }
+
+                var l = left.OrderByDescending(i => i).ToList();
+                var r = right.OrderBy(i => i).ToList();
+                //l.PrintAll();
+                //r.PrintAll();
+                a = r[0] - l[0];
+                if (a < 0) a = -1;
+            }
+
+            a += 1;
             //a.PrintAll();
             //var duplicates = a.GroupBy(name => name).Where(name => name.Count() >= n[1])
             //    .Select(group => group.Key).ToList();
             //duplicates.PrintAll();
-            WriteLine(a.Count);
+            WriteLine(a);
 
         }
 
