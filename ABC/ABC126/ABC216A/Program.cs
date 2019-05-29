@@ -15,7 +15,7 @@ namespace ABC216A
             var s = ReadLine();
             Char c =Char.ToLower(s[n[1] - 1]);
 
-            WriteLine(s.ChangeCharAt(n[1] - 1,c));
+            WriteLine(s.ChangeCharAt(n[1] - 1, c));
         }
         public static string ChangeCharAt(this string str, int index, char newChar)
         {
