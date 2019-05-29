@@ -11,7 +11,15 @@ namespace ABC216A
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().SplitTryParseToList<int>();
+            var s = ReadLine();
+            Char c =Char.ToLower(s[n[1] - 1]);
 
+            WriteLine(s.ChangeCharAt(n[1] - 1,c));
+        }
+        public static string ChangeCharAt(this string str, int index, char newChar)
+        {
+            return str.Remove(index, 1).Insert(index, newChar.ToString());
         }
 
         public static T TryParse<T>(this String input)
