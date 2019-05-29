@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace ABC126B
@@ -11,6 +13,34 @@ namespace ABC126B
     {
         static void Main(string[] args)
         {
+            var s = Regex.Split(ReadLine(), @"(?<=\G.{2})(?!$)").Select(x => int.Parse(x)).ToList();
+            var a = "";
+
+
+            if (s[0] <= 0 || s[1] <= 0)
+            {
+                a = "NA";
+            }
+            else
+            {
+                if (s[0] <= 12 && s[1] <= 12)
+                {
+                    a = "AMBIGUOUS";
+                }
+                else if(s[0] <= 12)
+                {
+                    a = "MMYY";
+                }
+                else if(s[1] <= 12)
+                {
+                    a = "YYMM";
+                }
+                else
+                {
+                    a = "NA";
+                }
+            }
+            WriteLine(a);
 
         }
 
