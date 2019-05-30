@@ -17,21 +17,21 @@ namespace ABC126B
             var a = "";
 
 
-            if (s[0] <= 0 || s[1] <= 0)
+            if (s[0] <= 0 && s[1] <= 0)
             {
                 a = "NA";
             }
             else
             {
-                if (s[0] <= 12 && s[1] <= 12)
+                if ((s[0] <= 12 && s[1] != 0 && s[0] > 0) && (s[1] <= 12 && s[0] != 0 && s[1] > 0))
                 {
                     a = "AMBIGUOUS";
                 }
-                else if(s[0] <= 12)
+                else if(s[0] <= 12 && s[0] > 0)
                 {
                     a = "MMYY";
                 }
-                else if(s[1] <= 12)
+                else if(s[1] <= 12 && s[1] > 0)
                 {
                     a = "YYMM";
                 }
