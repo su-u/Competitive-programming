@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using static System.Console;
 
-namespace ABC124A
+namespace ABC123A
 {
     static class Program
     {
