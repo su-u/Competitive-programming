@@ -11,8 +11,30 @@ namespace ABC124B
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            var Hlist = ReadLine().SplitTryParseToList<int>();
+            int a = 0;
+            for (int i = 0; i < Hlist.Count; i++)
+            {
+                a += Check(Hlist, i);
+            }
 
+
+            WriteLine(a);
         }
+
+        static int Check(List<int> list, int index)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                if (list[i] > list[index])
+                {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
 
         public static T TryParse<T>(this String input)
         {
