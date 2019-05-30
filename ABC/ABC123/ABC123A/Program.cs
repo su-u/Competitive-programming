@@ -11,7 +11,26 @@ namespace ABC123A
     {
         static void Main(string[] args)
         {
+            var l = ReadLineOne<int>(5);
+            var k = ReadLine().TryParse<int>();
 
+            string a = l.All(x => l.All(y => Math.Abs(y - x) <= k)) ? "Yay!" : ":(";
+            WriteLine(a);
+        }
+
+        private static string Check(List<int> l, int k)
+        {
+            for (int i = 1; i < l.Count; i++)
+            {
+                for (int j = i + 1; j < l.Count; j++)
+                {
+                    if (l[j] - l[i] > k) return ":(";
+
+                }
+
+            }
+
+            return "Yay!";
         }
 
         public static T TryParse<T>(this String input)
