@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 class Program
 {
@@ -8,64 +10,75 @@ class Program
         return Math.Min(Math.Min(x, y), z);
     }
 
-    private static int ComputeLevenshteinDistance(string strX, string strY)
+    private static int ComputeLevenshteinDistance(string str1, string str2)
     {
-        if (strX == null)
-            throw new ArgumentNullException("strX");
-        if (strY == null)
-            throw new ArgumentNullException("strY");
+        if (str1 == null)
+            throw new ArgumentNullException("str1");
+        if (str2 == null)
+            throw new ArgumentNullException("str2");
 
-        if (strX.Length == 0)
-            return strY.Length;
-        if (strY.Length == 0)
-            return strX.Length;
+        if (str1.Length == 0)
+            return str2.Length;
+        if (str2.Length == 0)
+            return str1.Length;
 
-        var d = new int[strX.Length + 1, strY.Length + 1];
+        var d = new int[str1.Length + 1, str2.Length + 1];
 
-        for (var i = 0; i <= strX.Length; i++)
+        for (var i = 0; i <= str1.Length; i++)
         {
             d[i, 0] = i;
         }
-        Console.WriteLine($"X:Init");
-        d.Print();
 
-        for (var j = 0; j <= strY.Length; j++)
+        for (var j = 0; j <= str2.Length; j++)
         {
             d[0, j] = j;
         }
-        Console.WriteLine($"Y:Init");
-        d.Print();
 
-        for (var j = 1; j <= strY.Length; j++)
+        for (var j = 1; j <= str2.Length; j++)
         {
-            for (var i = 1; i <= strX.Length; i++)
+            for (var i = 1; i <= str1.Length; i++)
             {
-                if (strX[i - 1] == strY[j - 1])
+                if (str1[i - 1] == str2[j - 1])
                     d[i, j] = d[i - 1, j - 1];
                 else
                     d[i, j] = Min(d[i - 1, j] + 1,
                         d[i, j - 1] + 1,
                         d[i - 1, j - 1] + 1);
-                Console.WriteLine($"比較文字{i}:{j} {strX[i - 1]} == {strY[j - 1]}");
-                d.Print();
             }
         }
 
 
-        return d[strX.Length, strY.Length];
+        return d[str1.Length, str2.Length];
     }
 
-    static void Main()
+    static int Main(string[] args)
     {
-        foreach (var texts in new[] {
-            new[] {"あいう", "あい"},
-        })
+        bool result1 = false;
+        bool result2 = false;
+        if (args.Length == 0)
         {
-            Console.WriteLine("{0} => {1} : {2}",
-                texts[0],
-                texts[1],
-                ComputeLevenshteinDistance(texts[0], texts[1]));
+            Console.WriteLine("0");
+            return 0;
         }
+        else if (args.Length < 2)
+        {
+            Console.WriteLine($"{args[0].Length}");
+            return 0;
+        }
+        else if (args.Length == 2)
+        {
+            result1 = Regex.IsMatch(args[0], "[A-Za-z0-9]");
+            result2 = Regex.IsMatch(args[1], "[A-Za-z0-9]");
+            Console.WriteLine($"{ComputeLevenshteinDistance(args[0], args[1])}");
+        }
+        else if (args.Length >= 3)
+        {
+            return 1;
+        }
+
+        if (!result1 || !result2) return 1;
+
+        return 0;
     }
 
 }
