@@ -11,7 +11,12 @@ namespace ABC123B
     {
         static void Main(string[] args)
         {
+            var l = ReadLineOne<int>(5);
 
+            for (int i = 0; i < l.Count; i++)
+            {
+                
+            }
         }
 
         public static T TryParse<T>(this String input)
