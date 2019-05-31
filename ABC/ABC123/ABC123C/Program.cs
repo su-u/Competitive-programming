@@ -11,6 +11,15 @@ namespace ABC123C
     {
         static void Main(string[] args)
         {
+            var l = ReadLineOne<long>(6);
+
+            var n = l.FirstOrDefault();
+
+            var min = l.Min();
+
+
+            WriteLine((long)Math.Ceiling((double)n / min) + 4);
+
 
         }
 
