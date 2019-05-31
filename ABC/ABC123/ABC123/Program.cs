@@ -1,80 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using static System.Console;
+using System.Diagnostics;
 
-namespace ABC123
+class Program
 {
-    static class Program
+    private static int Min(int x, int y, int z)
     {
-        static void Main(string[] args)
-        {
+        return Math.Min(Math.Min(x, y), z);
+    }
 
+    private static int ComputeLevenshteinDistance(string strX, string strY)
+    {
+        if (strX == null)
+            throw new ArgumentNullException("strX");
+        if (strY == null)
+            throw new ArgumentNullException("strY");
+
+        if (strX.Length == 0)
+            return strY.Length;
+        if (strY.Length == 0)
+            return strX.Length;
+
+        var d = new int[strX.Length + 1, strY.Length + 1];
+
+        for (var i = 0; i <= strX.Length; i++)
+        {
+            d[i, 0] = i;
         }
+        Console.WriteLine($"X:Init");
+        d.Print();
 
-        public static T TryParse<T>(this String input)
+        for (var j = 0; j <= strY.Length; j++)
         {
-            try
+            d[0, j] = j;
+        }
+        Console.WriteLine($"Y:Init");
+        d.Print();
+
+        for (var j = 1; j <= strY.Length; j++)
+        {
+            for (var i = 1; i <= strX.Length; i++)
             {
-                var converter = TypeDescriptor.GetConverter(typeof(T));
-                if (converter != null)
-                {
-                    return (T)converter.ConvertFromString(input);
-                }
+                if (strX[i - 1] == strY[j - 1])
+                    d[i, j] = d[i - 1, j - 1];
                 else
-                {
-                    throw new InvalidCastException("");
-                }
+                    d[i, j] = Min(d[i - 1, j] + 1,
+                        d[i, j - 1] + 1,
+                        d[i - 1, j - 1] + 1);
+                Console.WriteLine($"比較文字{i}:{j} {strX[i - 1]} == {strY[j - 1]}");
+                d.Print();
             }
-            catch
+        }
+
+
+        return d[strX.Length, strY.Length];
+    }
+
+    static void Main()
+    {
+        foreach (var texts in new[] {
+            new[] {"あいう", "あい"},
+        })
+        {
+            Console.WriteLine("{0} => {1} : {2}",
+                texts[0],
+                texts[1],
+                ComputeLevenshteinDistance(texts[0], texts[1]));
+        }
+    }
+
+}
+
+public static class MyEx
+{
+    public static void Print(this int[,] d)
+    {
+        int x = d.GetLength(0);
+        int y = d.GetLength(1);
+        for (int i = 0; i < x; i++)
+        {
+            for (int j = 0; j < y; j++)
             {
-                throw new InvalidCastException(typeof(T) + " is not supported.");
+                Console.Write($"{d[i, j]} ");
             }
-        }
-
-        public static List<T> SplitTryParseToList<T>(this String input)
-        {
-            return input.Split().Select(n => n.TryParse<T>()).ToList();
-        }
-
-        public static List<T> ListSwap<T>(this List<T> list, Int32 index1, Int32 index2)
-        {
-            var t = list[index1];
-            list[index1] = list[index2];
-            list[index2] = t;
-            return list;
-        }
-
-        public static List<Tuple<T, int>> DuplicateCount<T>(this IEnumerable<T> list)
-        {
-            return list
-                .GroupBy(i => i)
-                .Where(g => g.Any())
-                .Select(g => Tuple.Create(g.Key, g.Count()))
-                .ToList();
-        }
-        public static List<Tuple<T, int>> DuplicateSort<T>(this IEnumerable<Tuple<T, int>> list)
-        {
-            return list.OrderByDescending((x) => x.Item2).ToList();
-        }
-        public static List<T> ReadLineOne<T>(int n)
-        {
-            var list = new List<T>();
-            foreach (var i in Enumerable.Range(1, n))
-            {
-                list.Add(Console.ReadLine().TryParse<T>());
-            }
-            return list;
-        }
-        public static void PrintAll<T>(this IEnumerable<T> list)
-        {
-            foreach (var i in list)
-            {
-                Console.Write($"{i} ");
-            }
-
             Console.WriteLine();
         }
     }
