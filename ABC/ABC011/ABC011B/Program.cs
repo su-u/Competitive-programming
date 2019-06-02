@@ -11,7 +11,10 @@ namespace ABC011B
     {
         static void Main(string[] args)
         {
-
+            var s = ReadLine();
+            System.Globalization.TextInfo ti =
+                System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+            WriteLine(ti.ToTitleCase(s));
         }
 
         public static T TryParse<T>(this String input)
