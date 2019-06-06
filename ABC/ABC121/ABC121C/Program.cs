@@ -11,6 +11,28 @@ namespace ABC121C
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<long>();
+            var a = new List<List<long>>();
+            for (long i = 0; i < line[0]; i++)
+            {
+                a.Add(ReadLine().SplitTryParseToList<long>());
+
+            }
+
+            var aa = a.OrderBy(x => x[0]).ToList();
+            long katta = 0;
+            long kane = 0;
+            while (katta < line[1])
+            {
+                var m = aa.FirstOrDefault();
+                aa.RemoveAt(0);
+                var kau = (katta + m[1] > line[1] ? line[1] - katta : m[1]);
+                kane += (kau * m[0]);
+                katta += kau;
+                
+            }
+
+            WriteLine(kane);
 
         }
 
