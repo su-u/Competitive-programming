@@ -11,6 +11,26 @@ namespace ABC121B
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
+            var b = ReadLine().SplitTryParseToList<int>();
+            var a = new List<List<int>>();
+            for (int i = 0; i < line[0]; i++)
+            {
+                a.Add(ReadLine().SplitTryParseToList<int>());
+            }
+
+            var sum = new int[line[0]];
+            for (int i = 0; i < line[0]; i++)
+            {
+                sum[i] = 0;
+                for (int j = 0; j < line[1]; j++)
+                {
+                    sum[i] += (a[i][j] * b[j]);
+                }
+                sum[i] += line[2];
+            }
+
+            WriteLine(sum.Count(x => x > 0));
 
         }
 
