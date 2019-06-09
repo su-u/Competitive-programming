@@ -11,7 +11,11 @@ namespace ABC129A
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
 
+            var list = new List<int>();
+
+            WriteLine(Math.Min(line[0] + line[1], Math.Min(line[0] + line[2], line[1] + line[2])));
         }
 
         public static T TryParse<T>(this String input)
