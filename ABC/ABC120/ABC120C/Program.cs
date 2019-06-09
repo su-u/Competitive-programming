@@ -25,14 +25,7 @@ namespace ABC120C
             try
             {
                 var converter = TypeDescriptor.GetConverter(typeof(T));
-                if (converter != null)
-                {
-                    return (T)converter.ConvertFromString(input);
-                }
-                else
-                {
-                    throw new InvalidCastException("");
-                }
+                return (T)converter.ConvertFromString(input);
             }
             catch
             {
