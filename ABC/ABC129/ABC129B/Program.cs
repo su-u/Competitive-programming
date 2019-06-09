@@ -11,6 +11,24 @@ namespace ABC129B
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+
+            var line = ReadLine().SplitTryParseToList<int>();
+
+            var sum1 = line.Sum();
+            int sum2 = 0;
+
+            var list = new List<int>();;
+
+            for (int i = 0; i < line.Count; i++)
+            {
+                sum2 += line[i];
+                sum1 -= line[i];
+
+                list.Add(Math.Abs(sum2 - sum1));
+            }
+
+            WriteLine(list.Min());
 
         }
 
