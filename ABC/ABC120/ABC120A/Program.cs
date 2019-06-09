@@ -11,7 +11,11 @@ namespace ABC120A
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
 
+            var a = line[0] * line[2] <= line[1] ? line[2] : (int)(line[1] / line[0]);
+
+            WriteLine(a);
         }
 
         public static T TryParse<T>(this String input)
