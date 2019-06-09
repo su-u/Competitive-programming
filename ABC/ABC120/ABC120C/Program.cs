@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using static System.Console;
 
@@ -11,6 +12,11 @@ namespace ABC120C
     {
         static void Main(string[] args)
         {
+            var s = ReadLine();
+            var count0 = s.Count(c => c == '0');
+            var count1 = s.Length - count0;
+
+            WriteLine($"{2 * Math.Min(count0, count1)}");
 
         }
 
