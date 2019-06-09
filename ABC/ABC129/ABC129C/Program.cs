@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,44 @@ namespace ABC129C
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
 
+            var list = ReadLineOne<int>(line[1]);
+
+
+
+            var g = list.Select((x, index) => new {x, index})
+                .GroupBy(e => e.x - e.index, e => e.x).Max(x => x.Count());
+
+
+
+            long count = 0;
+            if (g >= 2)
+            {
+                WriteLine(0);
+            }
+            else
+            {
+                count = pow(2, line[0] - 3, 1000000007);
+                long waru = (long)Math.Pow(2, list.Count);
+                count = count / waru;
+
+
+                WriteLine(count % 1000000007);
+            }
         }
+
+        static public long pow(long a, long b, long c)
+        {
+            long re = 1;
+            for (int i = 1; i <= b; i++)
+            {
+                re = re * a % c;
+            }
+
+            return re;
+        }
+
 
         public static T TryParse<T>(this String input)
         {
