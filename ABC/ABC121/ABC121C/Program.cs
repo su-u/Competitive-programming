@@ -22,14 +22,13 @@ namespace ABC121C
             var aa = a.OrderBy(x => x[0]).ToList();
             long katta = 0;
             long kane = 0;
+            int index = 0;
             while (katta < line[1])
             {
-                var m = aa.FirstOrDefault();
-                aa.RemoveAt(0);
-                var kau = (katta + m[1] > line[1] ? line[1] - katta : m[1]);
-                kane += (kau * m[0]);
+                var kau = (katta + aa[index][1] > line[1] ? line[1] - katta : aa[index][1]);
+                kane += (kau * aa[index][0]);
                 katta += kau;
-                
+                index++;
             }
 
             WriteLine(kane);
