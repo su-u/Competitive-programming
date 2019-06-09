@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using static System.Console;
@@ -11,6 +12,21 @@ namespace ABC120B
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
+            var k = new int[line[2]];
+
+            int i = Math.Max(line[0], line[1]);
+            int j = 1;
+            while (i > 0 && j <= line[2])
+            {
+                if (line[0] % i == 0 && line[1] % i == 0)
+                {
+                    k[j - 1] = i;
+                    j++;
+                }
+                i--;
+            }
+            WriteLine(k[line[2] - 1]);
 
         }
 
