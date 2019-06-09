@@ -30,7 +30,7 @@ namespace ABC129C
             }
             else
             {
-                count = pow(2, line[0] - 3, 1000000007);
+                count = Pow(2, line[0] - 3, 1000000007);
                 long waru = (long)Math.Pow(2, list.Count);
                 count = count / waru;
 
@@ -39,7 +39,7 @@ namespace ABC129C
             }
         }
 
-        static public long pow(long a, long b, long c)
+        public static long Pow(long a, long b, long c)
         {
             long re = 1;
             for (int i = 1; i <= b; i++)
