@@ -11,7 +11,17 @@ namespace ABC130B
     {
         static void Main(string[] args)
         {
+            var line = ReadLine()?.SplitTryParseToList<int>();
+            var list = ReadLine()?.SplitTryParseToList<int>();
 
+
+            list?.Insert(0, 0); // 先頭に挿入
+            for (int i = 1; i < list?.Count; i++)
+            {
+                list[i] += list[i - 1];
+            }
+
+            WriteLine(list?.Count(x => x <= line[1]));
         }
 
         public static T TryParse<T>(this String input)
