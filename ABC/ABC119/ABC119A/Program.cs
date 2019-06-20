@@ -11,22 +11,25 @@ namespace ABC119A
     {
         static void Main(string[] args)
         {
+            var line = ReadLine()?.Split('/').Select(int.Parse).ToList();
 
+            WriteLine(CheckDate(line) ? "TBD" : "Heisei");
         }
 
-        public static T TryParse<T>(this String input)
+        private static bool CheckDate(IReadOnlyList<int> list)
+        {
+
+            if (list[0] < 2019) return false;
+            if (list[0] == 2019 && list[1] <= 4 && list[2] <= 30) return false;
+            return true;
+        }
+
+        public static T TryParse<T>(this string input)
         {
             try
             {
                 var converter = TypeDescriptor.GetConverter(typeof(T));
-                if (converter != null)
-                {
-                    return (T)converter.ConvertFromString(input);
-                }
-                else
-                {
-                    throw new InvalidCastException("");
-                }
+                return (T)converter.ConvertFromString(input);
             }
             catch
             {
