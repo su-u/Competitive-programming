@@ -7,9 +7,9 @@ using static System.Math;
 using static System.Console;
 
 using static CPL.Input.IO;
-using CPL.Input;
-using CPL.Collections;
-using CPL.String;
+using static CPL.Input.InputEx;
+using static CPL.String.StringEx;
+using static CPL.Collections.CollectionsEx;
 
 namespace C
 {
@@ -30,27 +30,18 @@ namespace CPL
         {
             public static T RL<T>()
             {
-                return Console.ReadLine().Trim().TryParse<T>();
+                var line = ReadLine() ?? throw new Exception();
+                return line.Trim().TryParse<T>();
             }
 
             public static List<T> RLL<T>()
             {
-                return Console.ReadLine().TrySplitParseToList<T>();
+                return ReadLine().TrySplitParseToList<T>();
             }
 
-            public static void WL(string s)
+            public static void WL<T>(T s)
             {
-                Console.WriteLine(s);
-            }
-
-            public static void WL(int s)
-            {
-                Console.WriteLine(s);
-            }
-
-            public static void WL(double s)
-            {
-                Console.WriteLine(s);
+                WriteLine(s);
             }
         }
 
@@ -78,6 +69,11 @@ namespace CPL
             public static List<T> ReadLineOne<T>(int n)
             {
                 return Enumerable.Range(1, n).Select(i => Console.ReadLine().TryParse<T>()).ToList();
+            }
+            
+            public static List<TResult> ReadLineMulti<TSource, TResult>(int n, Func<TResult> func)
+            {
+                return Enumerable.Range(1, n).Select(i => func()).ToList();
             }
         }
     }
@@ -111,7 +107,7 @@ namespace CPL
             {
                 foreach (var i in list)
                 {
-                    Console.Write($"{i} ");
+                    Write($"{i} ");
                 }
             }
         }
