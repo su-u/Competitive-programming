@@ -17,6 +17,11 @@ namespace D
     {
         public static void Main(string[] args)
         {
+            var num = RLL<int>();
+
+            var inputList = new List<List<int>>(num[1]);
+            inputList.AddRange(Enumerable.Range(0, num[1]).Select(i => RLL<int>()));
+            
         }
     }
 }
@@ -51,6 +56,11 @@ namespace CPL
             public static void WL(double s)
             {
                 Console.WriteLine(s);
+            }
+            
+            public static List<TResult> ReadLineMulti<TSource, TResult>(int n, Func<TResult> func)
+            {
+                return Enumerable.Range(1, n).Select(i => func()).ToList();
             }
         }
 
