@@ -17,6 +17,11 @@ namespace B
     {
         public static void Main(string[] args)
         {
+            var input = RL<int>();
+            var h = input / 3600;
+            var m = input / 60 % 60;
+            var s = input % 60;
+            WL($"{h:00}:{m:00}:{s:00}");
         }
     }
 }
