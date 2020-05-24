@@ -17,6 +17,25 @@ namespace C
     {
         public static void Main(string[] args)
         {
+            var input = RL<int>();
+            var diff = 2025 - input;
+            var list = new List<Tuple<int, int>>(100);
+            for (var i = 1; i <= 9; i++)
+            {
+                for (var j = 1; j <= 9; j++)
+                {
+                    if (i * j == diff)
+                    {
+                        list.Add(Tuple.Create(i, j));
+
+                    }
+                }
+            }
+
+            foreach (var i in list)
+            {
+                WL($"{i.Item1} x {i.Item2}");
+            }
         }
     }
 }
