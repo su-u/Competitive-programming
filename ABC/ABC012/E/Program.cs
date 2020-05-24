@@ -11,7 +11,7 @@ using CPL.Input;
 using CPL.Collections;
 using CPL.String;
 
-namespace D
+namespace E
 {
     internal class Program
     {
