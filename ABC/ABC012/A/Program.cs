@@ -17,6 +17,8 @@ namespace A
     {
         public static void Main(string[] args)
         {
+            var input = RLL<int>();
+            Console.WriteLine($"{input[1]} {input[0]}");
         }
     }
 }
